@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "895312254291",
+    "project_id": "medlife-546ae",
+    "storage_bucket": "medlife-546ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895312254291:android:c4850e963bec4c2ae2fda6",
+        "android_client_info": {
+          "package_name": "com.example.medlife_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiwqGanS3CIUX7WG24Y53bbhQqSqV73zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895312254291:android:63b3a4251cea869ee2fda6",
+        "android_client_info": {
+          "package_name": "com.medlife.medlife_v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiwqGanS3CIUX7WG24Y53bbhQqSqV73zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895312254291:android:5da7120537d02ad5e2fda6",
+        "android_client_info": {
+          "package_name": "com.medlife.vendor.medlife_vendor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiwqGanS3CIUX7WG24Y53bbhQqSqV73zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
