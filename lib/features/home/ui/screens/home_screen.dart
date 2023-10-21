@@ -126,12 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 43.h,
             ),
-            BlocListener(
+            BlocListener<HomeCubit,HomeState>(
               listener: (_, state) {
                 if (state is UploadMedicalEquipmentsLoading){
                   Center(child: CircularProgressIndicator(),);
                 }
-                if (state is UploadMedicalEquipmentsSuccess){
+                if (state is UploadMedicalEquipmentsError){
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
