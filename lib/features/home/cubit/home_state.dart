@@ -11,3 +11,13 @@ class UploadMedicalEquipmentsError extends HomeState {
 
   UploadMedicalEquipmentsError(this.message);
 }
+
+class UploadMedicalEquipmentImagesLoading extends HomeState {}
+
+class UploadMedicalEquipmentsImagesSuccess extends HomeState {}
+
+class UploadMedicalEquipmentsImagesError extends HomeState {
+  final String message;
+
+  UploadMedicalEquipmentsImagesError(this.message);
+}

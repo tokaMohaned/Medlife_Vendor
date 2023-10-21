@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:medlife_v2/features/home/cubit/home_cubit.dart';
 import 'package:medlife_v2/features/home/cubit/home_state.dart';
 import 'package:medlife_v2/features/home/ui/widgets/home_container.dart';
@@ -23,6 +25,9 @@ TextEditingController priceController = TextEditingController();
 TextEditingController quantityController = TextEditingController();
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<File> imageFiles = [];
+  List<File> imageNames = [];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -57,26 +62,69 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 8.h,
             ),
-            Container(
-              height: 150.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7.r),
-                border: Border.all(color: AppColors.borderColor),
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/images/Upload icon.png"),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Text(
-                      """Supported formats: JPEG, PNG, GIF, MP4,
-                 PDF, PSD, AI, Word, PPT""",
-                      style: openSans12W400(color: Color(0xff676767)),
-                    )
-                  ],
+            InkWell(
+              onTap: () async {
+                final ImagePicker picker = ImagePicker();
+                final List<XFile> xFiles = await picker.pickMultiImage();
+                if (xFiles.isNotEmpty) {
+                  File xFilePathToFile(XFile xFile) {
+                    return File(xFile.path);
+                  }
+
+                  File xFileNameToFile(XFile xFile) {
+                    return File(xFile.name);
+                  }
+
+                  imageFiles =
+                      xFiles.map((xFile) => xFilePathToFile(xFile)).toList();
+                  imageNames =
+                      xFiles.map((xFile) => xFileNameToFile(xFile)).toList();
+                  setState(() {});
+                }
+              },
+              child: Container(
+                height: 150.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7.r),
+                  border: Border.all(color: AppColors.borderColor),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/images/Upload icon.png"),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      imageFiles.isEmpty
+                          ? Text(
+                              """Supported formats: JPEG, PNG, GIF, MP4,
+                   PDF, PSD, AI, Word, PPT""",
+                              style: openSans12W400(color: Color(0xff676767)),
+                            )
+                          : SizedBox(
+                              height: 50.h,
+                              width: double.infinity,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: ListView.separated(
+                                      itemBuilder: (context, index) => Center(
+                                          child: Text(imageNames[index]
+                                              .toString()
+                                              .substring(5))),
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      itemCount: imageNames.length,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -126,12 +174,14 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 43.h,
             ),
-            BlocListener<HomeCubit,HomeState>(
+            BlocListener<HomeCubit, HomeState>(
               listener: (_, state) {
-                if (state is UploadMedicalEquipmentsLoading){
-                  Center(child: CircularProgressIndicator(),);
+                if (state is UploadMedicalEquipmentsLoading) {
+                  Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
-                if (state is UploadMedicalEquipmentsError){
+                if (state is UploadMedicalEquipmentsError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
@@ -143,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 }
-                if (state is UploadMedicalEquipmentsSuccess){
+                if (state is UploadMedicalEquipmentsSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
@@ -163,17 +213,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     description: descriptionController.text,
                     price: double.parse(priceController.text),
                     quantity: double.parse(quantityController.text),
-                    imagesUrls: [
-                      'assets/images/splsh logo.png',
-                      'assets/images/splsh logo.png',
-                    ],
                     sellerName:
                         "${ProfileCubit.get(context).vendor.firstName!} ${ProfileCubit.get(context).vendor.lastName!}",
                     brandName: 'Test',
                     createdAt: DateTime.now(),
+                    imagesUrls: [],
                   );
                   HomeCubit.get(context)
-                      .uploadMedicalEquipmentToFireStore(newMedicalEquipment);
+                      .uploadMedicalEquipmentImagesToFireStorage(imageFiles)
+                      .whenComplete(
+                        () => HomeCubit.get(context)
+                            .uploadMedicalEquipmentToFireStore(
+                                newMedicalEquipment, imageFiles),
+                      );
                 },
                 text: "Upload product",
               ),

@@ -22,6 +22,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(GetUserError(Failure.fromException(e).message));
     }
   }
+
   Future<void> updateVendor(Vendor updateVendor) async {
     emit(UpdateUserLoading());
     try {

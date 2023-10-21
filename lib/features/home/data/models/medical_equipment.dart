@@ -7,7 +7,7 @@ class MedicalEquipment {
   final double price;
   final double quantity;
   final double rating;
-  final List<String> imagesUrls;
+  List<String> imagesUrls;
   final String sellerName;
   final String brandName;
   final double sellerRating;

@@ -12,10 +12,11 @@ class ProfileFirebaseService {
     final docSnapshot = await _vendorCollection.doc(currentVendorId).get();
     return Vendor.fromJson(docSnapshot.data()!);
   }
+
   Future<void> updateVendor(Vendor updatedVendor) async {
     final currentVendorId = FirebaseAuth.instance.currentUser!.uid;
     final vendorDoc = _vendorCollection.doc(currentVendorId);
-      final updatedVendorData = updatedVendor.toJson();
-      await vendorDoc.update(updatedVendorData);
+    final updatedVendorData = updatedVendor.toJson();
+    await vendorDoc.update(updatedVendorData);
   }
 }

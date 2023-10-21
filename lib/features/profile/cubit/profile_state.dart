@@ -12,7 +12,6 @@ class GetUserError extends ProfileState {
   GetUserError(this.message);
 }
 
-
 class UpdateUserLoading extends ProfileState {}
 
 class UpdateUserSuccess extends ProfileState {}
