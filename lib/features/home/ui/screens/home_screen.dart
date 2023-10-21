@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/home/cubit/home_cubit.dart';
+import 'package:medlife_v2/features/home/cubit/home_state.dart';
 import 'package:medlife_v2/features/home/ui/widgets/home_container.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
-
 import '../../../../ui/widgets/default_text_button.dart';
 import '../../../profile/cubit/profile_cubit.dart';
 import '../../../../ui/resources/text_styles.dart';
+import '../../data/models/medical_equipment.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen();
@@ -24,7 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 76.h, horizontal: 20.w),
+        padding: EdgeInsets.only(
+          left: 16.0.w,
+          right: 16.w,
+          bottom: MediaQuery.of(context).viewInsets.bottom * 1,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -119,9 +126,57 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 43.h,
             ),
-            DefaultTextButton(
-              function: () {},
-              text: "Save changes",
+            BlocListener(
+              listener: (_, state) {
+                if (state is UploadMedicalEquipmentsLoading){
+                  Center(child: CircularProgressIndicator(),);
+                }
+                if (state is UploadMedicalEquipmentsSuccess){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "Failed to Uploaded",
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      backgroundColor: AppColors.error,
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
+                }
+                if (state is UploadMedicalEquipmentsSuccess){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        "Successfully Uploaded",
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      backgroundColor: AppColors.primary,
+                      duration: Duration(seconds: 3),
+                    ),
+                  );
+                }
+              },
+              child: DefaultTextButton(
+                function: () {
+                  final newMedicalEquipment = MedicalEquipment(
+                    title: productNameController.text,
+                    description: descriptionController.text,
+                    price: double.parse(priceController.text),
+                    quantity: double.parse(quantityController.text),
+                    imagesUrls: [
+                      'assets/images/splsh logo.png',
+                      'assets/images/splsh logo.png',
+                    ],
+                    sellerName:
+                        "${ProfileCubit.get(context).vendor.firstName!} ${ProfileCubit.get(context).vendor.lastName!}",
+                    brandName: 'Test',
+                    createdAt: DateTime.now(),
+                  );
+                  HomeCubit.get(context)
+                      .uploadMedicalEquipmentToFireStore(newMedicalEquipment);
+                },
+                text: "Upload product",
+              ),
             ),
           ],
         ),
