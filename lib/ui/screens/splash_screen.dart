@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medlife_v2/features/auth/cubit/auth_cubit.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_state.dart';
 import 'package:medlife_v2/route_manager.dart';
+
+import '../resources/text_styles.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen();
@@ -35,7 +38,20 @@ class _SplashScreenState extends State<SplashScreen> {
       },
       child: Scaffold(
         body: Center(
-          child: Image.asset("assets/images/splsh logo.png"),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset("assets/images/splsh logo.png"),
+              SizedBox(
+                height: 15.h,
+              ),
+              Text(
+                "Vendor",
+                style: openSans20W600(color: Colors.black),
+              ),
+            ],
+          ),
         ),
       ),
     );

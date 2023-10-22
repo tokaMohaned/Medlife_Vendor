@@ -20,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 TextEditingController productNameController = TextEditingController();
+TextEditingController brandNameController = TextEditingController();
 TextEditingController descriptionController = TextEditingController();
 TextEditingController priceController = TextEditingController();
 TextEditingController quantityController = TextEditingController();
@@ -139,6 +140,13 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 17.h,
             ),
             HomeContainer(
+                labelText: "Product Name*",
+                textInputType: TextInputType.text,
+                controller: brandNameController),
+            SizedBox(
+              height: 17.h,
+            ),
+            HomeContainer(
               labelText: "Description*",
               textInputType: TextInputType.text,
               controller: descriptionController,
@@ -176,7 +184,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BlocListener<HomeCubit, HomeState>(
               listener: (_, state) {
-                if (state is UploadMedicalEquipmentsLoading) {
+                if (state is UploadMedicalEquipmentImagesLoading ||
+                    state is UploadMedicalEquipmentsLoading) {
                   Center(
                     child: CircularProgressIndicator(),
                   );
@@ -185,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
-                        "Failed to Uploaded",
+                        "Failed to Upload",
                         style: TextStyle(fontSize: 15),
                       ),
                       backgroundColor: AppColors.error,
@@ -215,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     quantity: double.parse(quantityController.text),
                     sellerName:
                         "${ProfileCubit.get(context).vendor.firstName!} ${ProfileCubit.get(context).vendor.lastName!}",
-                    brandName: 'Test',
+                    brandName: brandNameController.text,
                     createdAt: DateTime.now(),
                     imagesUrls: [],
                   );

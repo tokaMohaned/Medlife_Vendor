@@ -53,7 +53,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Image.asset("assets/images/splsh logo.png"),
                 ),
                 SizedBox(
-                  height: 70.h,
+                  height: 15.h,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Vendor",
+                    style: openSans20W600(color: Colors.black),
+                  ),
+                ),
+                SizedBox(
+                  height: 65.h,
                 ),
                 Text(
                   "Create account",
@@ -71,33 +81,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 32.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 170,
-                      child: DefaultFormField(
-                        controller: firstNameController,
-                        type: TextInputType.name,
-                        validate: (value) =>
-                            validateGeneral(value, 'First Name'),
-                        label: "First Name",
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: DefaultFormField(
+                          controller: firstNameController,
+                          type: TextInputType.name,
+                          validate: (value) =>
+                              validateGeneral(value, 'First Name'),
+                          label: "First Name",
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                    SizedBox(
-                      width: 170,
-                      child: DefaultFormField(
-                        controller: lastNameController,
-                        type: TextInputType.name,
-                        validate: (value) =>
-                            validateGeneral(value, 'Last Name'),
-                        label: "Last Name",
+                      SizedBox(
+                        width: 15.w,
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: DefaultFormField(
+                          controller: lastNameController,
+                          type: TextInputType.name,
+                          validate: (value) =>
+                              validateGeneral(value, 'Last Name'),
+                          label: "Last Name",
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 32.h,
