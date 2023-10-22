@@ -272,6 +272,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     "assets/images/flat-color-icons_google.png",
                   ),
                 ),
+                SizedBox(
+                  height: 70.h,
+                ),
               ],
             ),
           ),

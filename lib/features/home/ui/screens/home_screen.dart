@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 17.h,
             ),
             HomeContainer(
-                labelText: "Product Name*",
+                labelText: "Brand Name*",
                 textInputType: TextInputType.text,
                 controller: brandNameController),
             SizedBox(
@@ -238,6 +238,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 text: "Upload product",
               ),
+            ),
+            SizedBox(
+              height: 90.h,
             ),
           ],
         ),
