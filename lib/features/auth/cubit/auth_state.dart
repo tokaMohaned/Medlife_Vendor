@@ -12,9 +12,15 @@ class AuthError extends AuthState {
   AuthError(this.message);
 }
 
-class VerifyPhoneNumberLoading extends AuthState {}
+class EmailVerifyRequestSentLoading extends AuthState {}
 
-class PhoneNumberVerified extends AuthState {}
+class EmailVerifyRequestSentSuccess extends AuthState {}
+
+class EmailVerifyRequestSentError extends AuthState {
+  final String message;
+
+  EmailVerifyRequestSentError(this.message);
+}
 
 class PasswordResetRequestSent extends AuthState {}
 

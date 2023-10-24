@@ -15,6 +15,7 @@ class AuthFirebaseService {
       email: registerModel.email,
       password: registerModel.password,
     );
+    await userCredential.user?.sendEmailVerification();
     final uId = userCredential.user!.uid;
     final userModel = Vendor(
       id: uId,
@@ -32,10 +33,14 @@ class AuthFirebaseService {
       email: loginData.email,
       password: loginData.password,
     );
-    final uId = userCredential.user!.uid;
-    final docSnapShot = await _usersCollection.doc(uId).get();
-    final userModel = Vendor.fromJson(docSnapShot.data()!);
-    return userModel;
+    if (userCredential.user!.emailVerified) {
+      final uId = userCredential.user!.uid;
+      final docSnapShot = await _usersCollection.doc(uId).get();
+      final userModel = Vendor.fromJson(docSnapShot.data()!);
+      return userModel;
+    } else {
+      throw Exception("Email not verified");
+    }
   }
 
   Future<void> logout() => FirebaseAuth.instance.signOut();

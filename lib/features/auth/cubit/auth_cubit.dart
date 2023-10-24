@@ -18,13 +18,12 @@ class AuthCubit extends Cubit<AuthState> {
   bool isConfirmPasswordVisible = false;
 
   Future<void> register(RegisterData registerData) async {
-    emit(AuthLoading());
+    emit(EmailVerifyRequestSentLoading());
     try {
       await authFirebaseService.register(registerData);
-      isLoggedIn = true;
-      emit(AuthSuccess());
+      emit(EmailVerifyRequestSentSuccess());
     } catch (e) {
-      emit(AuthError(Failure.fromException(e).message));
+      emit(EmailVerifyRequestSentError(Failure.fromException(e).message));
     }
   }
 
