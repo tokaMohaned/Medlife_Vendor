@@ -7,6 +7,7 @@ import 'package:medlife_v2/features/home/cubit/home_cubit.dart';
 import 'package:medlife_v2/features/home/cubit/home_state.dart';
 import 'package:medlife_v2/features/home/ui/widgets/home_container.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
+import 'package:medlife_v2/ui/widgets/loading_indicator.dart';
 import '../../../../ui/widgets/default_text_button.dart';
 import '../../../profile/cubit/profile_cubit.dart';
 import '../../../../ui/resources/text_styles.dart';
@@ -184,10 +185,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BlocListener<HomeCubit, HomeState>(
               listener: (_, state) {
-                if (state is UploadMedicalEquipmentImagesLoading ||
-                    state is UploadMedicalEquipmentsLoading) {
-                  Center(
-                    child: CircularProgressIndicator(),
+                if (state is UploadMedicalEquipmentsLoading) {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const LoadingIndicator();
+                    },
                   );
                 }
                 if (state is UploadMedicalEquipmentsError) {
