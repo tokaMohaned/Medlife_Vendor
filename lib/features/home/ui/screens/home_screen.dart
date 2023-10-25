@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,9 +9,10 @@ import 'package:medlife_v2/features/home/cubit/home_state.dart';
 import 'package:medlife_v2/features/home/ui/widgets/home_container.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/widgets/loading_indicator.dart';
+
+import '../../../../ui/resources/text_styles.dart';
 import '../../../../ui/widgets/default_text_button.dart';
 import '../../../profile/cubit/profile_cubit.dart';
-import '../../../../ui/resources/text_styles.dart';
 import '../../data/models/medical_equipment.dart';
 
 class HomeScreen extends StatefulWidget {

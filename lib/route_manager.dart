@@ -3,6 +3,7 @@ import 'package:medlife_v2/features/auth/ui/screens/login_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/register_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/reset_password_screen.dart';
 import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
+import 'package:medlife_v2/features/requests/ui/current_request_details.dart';
 import 'package:medlife_v2/ui/screens/home_layout.dart';
 import 'package:medlife_v2/features/home/ui/screens/home_screen.dart';
 import 'package:medlife_v2/ui/screens/splash_screen.dart';
@@ -14,6 +15,7 @@ class Routes {
   static const String resetPassword = "/resetPassword";
   static const String register = "/register";
   static const String home = "/home";
+  static const String currentRequestDetails = "/currentRequestDetails";
   static const String profile = "/profile";
 }
 
@@ -42,6 +44,10 @@ Route? onGenerateRoute(RouteSettings routeSettings) {
     case Routes.home:
       return MaterialPageRoute(
         builder: (_) => const HomeScreen(),
+      );
+    case Routes.currentRequestDetails:
+      return MaterialPageRoute(
+        builder: (_) => const CurrentRequestDetails(),
       );
     case Routes.profile:
       return MaterialPageRoute(
