@@ -4,12 +4,13 @@ import 'package:medlife_v2/features/requests/widgets/custom_address_container.da
 import 'package:medlife_v2/features/requests/widgets/request_order.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/widgets/custom_divider.dart';
+import 'package:medlife_v2/ui/widgets/default_text_button.dart';
 import 'package:medlife_v2/ui/widgets/summery_row.dart';
 
 import '../../../ui/resources/text_styles.dart';
 
-class CurrentRequestDetails extends StatelessWidget {
-  const CurrentRequestDetails({super.key});
+class NewRequestDetails extends StatelessWidget {
+  const NewRequestDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,20 +60,7 @@ class CurrentRequestDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 24.h,
-              ),
-              Container(
-                width: MediaQuery.sizeOf(context).width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5.r),
-                    color: Color(0xffF8965C)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Status : on progress"),
-                ),
-              ),
-              SizedBox(
-                height: 12.h,
+                height: 29.h,
               ),
               Text(
                 "Shipping Address",
@@ -193,6 +181,28 @@ class CurrentRequestDetails extends StatelessWidget {
               SizedBox(
                 height: 18.h,
               ),
+              DefaultTextButton(
+                function: () {},
+                text: "Place order",
+                textStyle: openSans16W500(color: Colors.white),
+                height: 65.h,
+                width: double.infinity,
+              ),
+              SizedBox(
+                height: 18.h,
+              ),
+              DefaultTextButton(
+                function: () {},
+                text: "Download Request",
+                textStyle: openSans16W500(color: const Color(0xff1A1A1A)),
+                height: 65.h,
+                width: double.infinity,
+                backgroundColor: Colors.white,
+                borderColor: AppColors.primary,
+              ),
+              SizedBox(
+                height: 15.h,
+              )
             ],
           ),
         ),

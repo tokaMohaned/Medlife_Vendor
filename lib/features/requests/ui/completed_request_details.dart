@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medlife_v2/features/requests/widgets/custom_address_container.dart';
 import 'package:medlife_v2/features/requests/widgets/request_order.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
+import 'package:medlife_v2/ui/resources/text_styles.dart';
 import 'package:medlife_v2/ui/widgets/custom_divider.dart';
 import 'package:medlife_v2/ui/widgets/summery_row.dart';
 
-import '../../../ui/resources/text_styles.dart';
-
-class CurrentRequestDetails extends StatelessWidget {
-  const CurrentRequestDetails({super.key});
+class CompletedRequestDetails extends StatelessWidget {
+  const CompletedRequestDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +64,10 @@ class CurrentRequestDetails extends StatelessWidget {
                 width: MediaQuery.sizeOf(context).width,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.r),
-                    color: Color(0xffF8965C)),
+                    color: Color(0xff2CB742)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Status : on progress"),
+                  child: Text("Status : Delivered"),
                 ),
               ),
               SizedBox(
@@ -191,7 +190,7 @@ class CurrentRequestDetails extends StatelessWidget {
               ),
               SummeryRow(text: 'Total', price: '50'),
               SizedBox(
-                height: 18.h,
+                height: 25.h,
               ),
             ],
           ),

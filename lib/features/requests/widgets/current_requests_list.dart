@@ -11,6 +11,7 @@ class CurrentRequestsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () =>
@@ -63,7 +64,7 @@ class CurrentRequestsList extends StatelessWidget {
           separatorBuilder: (context, index) {
             return Divider(thickness: 1);
           },
-          itemCount: 5),
+          itemCount: 40),
     );
   }
 }

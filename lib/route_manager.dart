@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:medlife_v2/features/auth/ui/screens/login_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/register_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/reset_password_screen.dart';
-import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
-import 'package:medlife_v2/features/requests/ui/current_request_details.dart';
-import 'package:medlife_v2/ui/screens/home_layout.dart';
 import 'package:medlife_v2/features/home/ui/screens/home_screen.dart';
+import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
+import 'package:medlife_v2/features/requests/ui/completed_request_details.dart';
+import 'package:medlife_v2/features/requests/ui/current_request_details.dart';
+import 'package:medlife_v2/features/requests/ui/new_request_details.dart';
+import 'package:medlife_v2/ui/screens/home_layout.dart';
 import 'package:medlife_v2/ui/screens/splash_screen.dart';
 
 class Routes {
@@ -16,6 +18,8 @@ class Routes {
   static const String register = "/register";
   static const String home = "/home";
   static const String currentRequestDetails = "/currentRequestDetails";
+  static const String newRequestDetails = "/newRequestDetails";
+  static const String completedRequestDetails = "/completedRequestDetails";
   static const String profile = "/profile";
 }
 
@@ -48,6 +52,14 @@ Route? onGenerateRoute(RouteSettings routeSettings) {
     case Routes.currentRequestDetails:
       return MaterialPageRoute(
         builder: (_) => const CurrentRequestDetails(),
+      );
+    case Routes.newRequestDetails:
+      return MaterialPageRoute(
+        builder: (_) => const NewRequestDetails(),
+      );
+    case Routes.completedRequestDetails:
+      return MaterialPageRoute(
+        builder: (_) => const CompletedRequestDetails(),
       );
     case Routes.profile:
       return MaterialPageRoute(
