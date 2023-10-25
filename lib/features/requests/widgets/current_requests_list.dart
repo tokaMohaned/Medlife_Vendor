@@ -11,6 +11,7 @@ class CurrentRequestsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
+         padding: EdgeInsets.zero,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             return GestureDetector(

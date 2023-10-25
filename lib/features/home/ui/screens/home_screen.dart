@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: EdgeInsets.only(
+          top: 36.h,
           left: 16.0.w,
           right: 16.w,
           bottom: MediaQuery.of(context).viewInsets.bottom * 1,
