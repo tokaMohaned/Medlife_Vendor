@@ -197,37 +197,41 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BlocListener<HomeCubit, HomeState>(
               listener: (_, state) {
-                if (state is UploadMedicalEquipmentsLoading) {
+                if (state is UploadMedicalEquipmentsLoading ||
+                    state is UploadMedicalEquipmentImagesLoading) {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return const LoadingIndicator();
                     },
                   );
-                }
-                if (state is UploadMedicalEquipmentsError) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        "Failed to Upload",
-                        style: TextStyle(fontSize: 15),
+                }else{
+                  Navigator.pop(context);
+                  if (state is UploadMedicalEquipmentsError ||
+                      state is UploadMedicalEquipmentsImagesError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "Failed to Upload",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        backgroundColor: AppColors.error,
+                        duration: Duration(seconds: 3),
                       ),
-                      backgroundColor: AppColors.error,
-                      duration: Duration(seconds: 3),
-                    ),
-                  );
-                }
-                if (state is UploadMedicalEquipmentsSuccess) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        "Successfully Uploaded",
-                        style: TextStyle(fontSize: 15),
+                    );
+                  }
+                  if (state is UploadMedicalEquipmentsSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          "Successfully Uploaded",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        backgroundColor: AppColors.primary,
+                        duration: Duration(seconds: 3),
                       ),
-                      backgroundColor: AppColors.primary,
-                      duration: Duration(seconds: 3),
-                    ),
-                  );
+                    );
+                  }
                 }
               },
               child: DefaultTextButton(
