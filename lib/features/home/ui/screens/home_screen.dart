@@ -24,6 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 TextEditingController productNameController = TextEditingController();
 TextEditingController brandNameController = TextEditingController();
+TextEditingController productTypeController = TextEditingController();
 TextEditingController descriptionController = TextEditingController();
 TextEditingController priceController = TextEditingController();
 TextEditingController quantityController = TextEditingController();
@@ -152,6 +153,13 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 17.h,
             ),
             HomeContainer(
+                labelText: "Product Type*",
+                textInputType: TextInputType.text,
+                controller: productTypeController),
+            SizedBox(
+              height: 17.h,
+            ),
+            HomeContainer(
               labelText: "Description*",
               textInputType: TextInputType.text,
               controller: descriptionController,
@@ -232,6 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     sellerName:
                         "${ProfileCubit.get(context).vendor.firstName!} ${ProfileCubit.get(context).vendor.lastName!}",
                     brandName: brandNameController.text,
+                    productType: productTypeController.text,
                     createdAt: DateTime.now(),
                     imagesUrls: [],
                   );
