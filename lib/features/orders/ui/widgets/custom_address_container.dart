@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/orders/ui/widgets/custom_address_row.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
-import 'package:medlife_v2/features/requests/widgets/custom_address_row.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 
 class CustomAddressContainer extends StatelessWidget {
@@ -33,8 +33,7 @@ class CustomAddressContainer extends StatelessWidget {
           ),
           CustomAddressRow(
             icon: Icons.location_on_outlined,
-            text:
-                ProfileCubit.get(context).vendor.address ?? '',
+            text: ProfileCubit.get(context).vendor.address ?? '',
           ),
         ],
       ),

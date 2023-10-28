@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medlife_v2/features/auth/cubit/auth_cubit.dart';
 import 'package:medlife_v2/features/auth/cubit/auth_state.dart';
 import 'package:medlife_v2/features/auth/data/models/register_data.dart';
-import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
-import 'package:medlife_v2/features/profile/cubit/profile_state.dart';
 import 'package:medlife_v2/route_manager.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/resources/text_styles.dart';
@@ -56,7 +54,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 15.h,
                 ),
                 Align(
-                  alignment: Alignment.center,
                   child: Text(
                     "Vendor",
                     style: openSans20W600(color: Colors.black),

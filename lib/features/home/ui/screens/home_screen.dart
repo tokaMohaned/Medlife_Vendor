@@ -6,14 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medlife_v2/features/home/cubit/home_cubit.dart';
 import 'package:medlife_v2/features/home/cubit/home_state.dart';
+import 'package:medlife_v2/features/home/data/models/medical_equipment.dart';
 import 'package:medlife_v2/features/home/ui/widgets/home_container.dart';
+import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
+import 'package:medlife_v2/ui/resources/text_styles.dart';
+import 'package:medlife_v2/ui/widgets/default_text_button.dart';
 import 'package:medlife_v2/ui/widgets/loading_indicator.dart';
-
-import '../../../../ui/resources/text_styles.dart';
-import '../../../../ui/widgets/default_text_button.dart';
-import '../../../profile/cubit/profile_cubit.dart';
-import '../../data/models/medical_equipment.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen();
@@ -64,7 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               "Product images",
               style: openSans14W400(
-                  color: const Color(0xff1E1E1E).withOpacity(0.5)),
+                color: const Color(0xff1E1E1E).withOpacity(0.5),
+              ),
             ),
             SizedBox(
               height: 8.h,
@@ -103,33 +103,36 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: 15.h,
                       ),
-                      imageFiles.isEmpty
-                          ? Text(
-                              """Supported formats: JPEG, PNG, GIF, MP4,
+                      if (imageFiles.isEmpty)
+                        Text(
+                          """
+Supported formats: JPEG, PNG, GIF, MP4,
                    PDF, PSD, AI, Word, PPT""",
-                              style: openSans12W400(color: Color(0xff676767)),
-                            )
-                          : SizedBox(
-                              height: 50.h,
-                              width: double.infinity,
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                    child: ListView.separated(
-                                      itemBuilder: (context, index) => Center(
-                                          child: Text(imageNames[index]
-                                              .toString()
-                                              .substring(5))),
-                                      separatorBuilder: (context, index) =>
-                                          SizedBox(
-                                        height: 5.h,
-                                      ),
-                                      itemCount: imageNames.length,
+                          style: openSans12W400(color: const Color(0xff676767)),
+                        )
+                      else
+                        SizedBox(
+                          height: 50.h,
+                          width: double.infinity,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: ListView.separated(
+                                  itemBuilder: (context, index) => Center(
+                                    child: Text(
+                                      imageNames[index].toString().substring(5),
                                     ),
                                   ),
-                                ],
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(
+                                    height: 5.h,
+                                  ),
+                                  itemCount: imageNames.length,
+                                ),
                               ),
-                            ),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -139,23 +142,26 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 17.h,
             ),
             HomeContainer(
-                labelText: "Product Name*",
-                textInputType: TextInputType.text,
-                controller: productNameController),
+              labelText: "Product Name*",
+              textInputType: TextInputType.text,
+              controller: productNameController,
+            ),
             SizedBox(
               height: 17.h,
             ),
             HomeContainer(
-                labelText: "Brand Name*",
-                textInputType: TextInputType.text,
-                controller: brandNameController),
+              labelText: "Brand Name*",
+              textInputType: TextInputType.text,
+              controller: brandNameController,
+            ),
             SizedBox(
               height: 17.h,
             ),
             HomeContainer(
-                labelText: "Product Type*",
-                textInputType: TextInputType.text,
-                controller: productTypeController),
+              labelText: "Product Type*",
+              textInputType: TextInputType.text,
+              controller: productTypeController,
+            ),
             SizedBox(
               height: 17.h,
             ),
@@ -205,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       return const LoadingIndicator();
                     },
                   );
-                }else{
+                } else {
                   Navigator.pop(context);
                   if (state is UploadMedicalEquipmentsError ||
                       state is UploadMedicalEquipmentsImagesError) {
@@ -253,7 +259,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       .whenComplete(
                         () => HomeCubit.get(context)
                             .uploadMedicalEquipmentToFireStore(
-                                newMedicalEquipment, imageFiles),
+                          newMedicalEquipment,
+                          imageFiles,
+                        ),
                       );
                 },
                 text: "Upload product",

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/orders/ui/screens/completed_requests.dart';
+import 'package:medlife_v2/features/orders/ui/screens/current_requests.dart';
+import 'package:medlife_v2/features/orders/ui/screens/new_requests.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
-import 'package:medlife_v2/features/requests/ui/completed_requests.dart';
-import 'package:medlife_v2/features/requests/ui/current_requests.dart';
-import 'package:medlife_v2/features/requests/ui/new_requests.dart';
-
-import '../../../ui/resources/app_colors.dart';
-import '../../../ui/resources/text_styles.dart';
+import 'package:medlife_v2/ui/resources/app_colors.dart';
+import 'package:medlife_v2/ui/resources/text_styles.dart';
 
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({super.key});
@@ -41,8 +40,9 @@ class _RequestsScreenState extends State<RequestsScreen> {
           ),
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.r),
-                color: const Color(0xfff1f4f6)),
+              borderRadius: BorderRadius.circular(5.r),
+              color: const Color(0xfff1f4f6),
+            ),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 7.h, horizontal: 8.w),
               child: Row(
@@ -57,7 +57,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     child: Container(
                       color: currentIndex == 0
                           ? AppColors.primary
-                          : Color(0xfff1f4f6),
+                          : const Color(0xfff1f4f6),
                       height: 40.h,
                       width: 90.w,
                       child: Row(
@@ -68,7 +68,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                             style: currentIndex == 0
                                 ? openSans12W600(color: Colors.white)
                                 : openSans12W600(
-                                    color: const Color(0xff1E1E1E)),
+                                    color: const Color(0xff1E1E1E),
+                                  ),
                           ),
                         ],
                       ),
@@ -83,7 +84,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     child: Container(
                       color: currentIndex == 1
                           ? AppColors.primary
-                          : Color(0xfff1f4f6),
+                          : const Color(0xfff1f4f6),
                       height: 40.h,
                       width: 90.w,
                       child: Row(
@@ -94,7 +95,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                             style: currentIndex == 1
                                 ? openSans12W600(color: Colors.white)
                                 : openSans12W600(
-                                    color: const Color(0xff1E1E1E)),
+                                    color: const Color(0xff1E1E1E),
+                                  ),
                           ),
                         ],
                       ),
@@ -109,7 +111,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     child: Container(
                       color: currentIndex == 2
                           ? AppColors.primary
-                          : Color(0xfff1f4f6),
+                          : const Color(0xfff1f4f6),
                       height: 40.h,
                       width: 90.w,
                       child: Row(
@@ -120,7 +122,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                             style: currentIndex == 2
                                 ? openSans12W600(color: Colors.white)
                                 : openSans12W600(
-                                    color: const Color(0xff1E1E1E)),
+                                    color: const Color(0xff1E1E1E),
+                                  ),
                           ),
                         ],
                       ),
@@ -133,11 +136,12 @@ class _RequestsScreenState extends State<RequestsScreen> {
           SizedBox(
             height: 16.h,
           ),
-          currentIndex == 0
-              ? NewRequests()
-              : currentIndex == 1
-                  ? CurrentRequests()
-                  : CompletedRequests(),
+          if (currentIndex == 0)
+            const NewRequests()
+          else
+            currentIndex == 1
+                ? const CurrentRequests()
+                : const CompletedRequests(),
         ],
       ),
     );

@@ -53,7 +53,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 15.h,
                 ),
                 Align(
-                  alignment: Alignment.center,
                   child: Text(
                     "Vendor",
                     style: openSans20W600(color: Colors.black),

@@ -3,10 +3,10 @@ import 'package:medlife_v2/features/auth/ui/screens/login_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/register_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/reset_password_screen.dart';
 import 'package:medlife_v2/features/home/ui/screens/home_screen.dart';
+import 'package:medlife_v2/features/orders/ui/screens/completed_request_details.dart';
+import 'package:medlife_v2/features/orders/ui/screens/current_request_details.dart';
+import 'package:medlife_v2/features/orders/ui/screens/new_request_details.dart';
 import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
-import 'package:medlife_v2/features/requests/ui/completed_request_details.dart';
-import 'package:medlife_v2/features/requests/ui/current_request_details.dart';
-import 'package:medlife_v2/features/requests/ui/new_request_details.dart';
 import 'package:medlife_v2/ui/screens/home_layout.dart';
 import 'package:medlife_v2/ui/screens/splash_screen.dart';
 

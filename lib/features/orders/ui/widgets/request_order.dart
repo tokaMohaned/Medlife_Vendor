@@ -15,7 +15,7 @@ class RequestOrder extends StatelessWidget {
       ),
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.borderColor),
-          borderRadius: BorderRadius.circular(5.r)),
+          borderRadius: BorderRadius.circular(5.r),),
       child: Padding(
           padding: EdgeInsets.symmetric(vertical: 9.h, horizontal: 5.w),
           child: Column(
@@ -37,7 +37,7 @@ class RequestOrder extends StatelessWidget {
                               Text(
                                 "Compression device",
                                 style: openSans14W400(
-                                  color: Color(0xff576A69),
+                                  color: const Color(0xff576A69),
                                 ),
                               ),
                               SizedBox(
@@ -49,15 +49,15 @@ class RequestOrder extends StatelessWidget {
                                     TextSpan(
                                         text: '23',
                                         style: openSans18W500(
-                                          color: Color(0xff576A69),
-                                        )),
+                                          color: const Color(0xff576A69),
+                                        ),),
                                     TextSpan(
                                         text: 'ASR',
                                         style: openSans14W400(
-                                            color: AppColors.primary)),
+                                            color: AppColors.primary,),),
                                   ],
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           SizedBox(
@@ -65,18 +65,18 @@ class RequestOrder extends StatelessWidget {
                           ),
                           Text(
                             "2",
-                            style: openSans16W500(color: Color(0xff1E1E1E)),
-                          )
+                            style: openSans16W500(color: const Color(0xff1E1E1E)),
+                          ),
                         ],
                       );
                     },
                     separatorBuilder: (context, index) {
                       return SizedBox(height: 16.h);
                     },
-                    itemCount: 4),
+                    itemCount: 4,),
               ),
             ],
-          )),
+          ),),
     );
   }
 }

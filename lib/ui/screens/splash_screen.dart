@@ -6,7 +6,7 @@ import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_state.dart';
 import 'package:medlife_v2/route_manager.dart';
 
-import '../resources/text_styles.dart';
+import 'package:medlife_v2/ui/resources/text_styles.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen();
@@ -40,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset("assets/images/splsh logo.png"),
               SizedBox(
