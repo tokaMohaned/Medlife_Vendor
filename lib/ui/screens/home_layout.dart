@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medlife_v2/features/home/ui/screens/home_screen.dart';
+import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
 import 'package:medlife_v2/features/orders/ui/screens/requests_screen.dart';
 import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
@@ -18,6 +19,12 @@ class _HomeLayoutState extends State<HomeLayout> {
     const RequestsScreen(),
     const ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    OrdersCubit.get(context).getOrders();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

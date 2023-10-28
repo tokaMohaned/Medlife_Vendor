@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/orders/data/models/order.dart';
 import 'package:medlife_v2/features/orders/ui/widgets/custom_address_container.dart';
 import 'package:medlife_v2/features/orders/ui/widgets/request_order.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
@@ -13,6 +14,7 @@ class NewRequestDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final newRequest = ModalRoute.of(context)!.settings.arguments! as Order;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -68,7 +70,9 @@ class NewRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 8.h,
                 ),
-                const CustomAddressContainer(),
+                CustomAddressContainer(
+                  orderDetails: newRequest,
+                ),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -95,7 +99,7 @@ class NewRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          "Home delivery",
+                          newRequest.address.place ?? "",
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],
@@ -128,7 +132,7 @@ class NewRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          "Cash payment",
+                          newRequest.paymentMethod,
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],
@@ -145,7 +149,7 @@ class NewRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                const RequestOrder(),
+                RequestOrder(medicalEquipmentsDetails: newRequest,),
                 SizedBox(
                   height: 23.h,
                 ),
@@ -156,19 +160,31 @@ class NewRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 9.h,
                 ),
-                const SummeryRow(text: 'Delivery Fee', price: '+2 SAR'),
+                SummeryRow(
+                  text: 'Delivery Fee',
+                  price: '+${newRequest.orderCost.deliveryFee} SAR',
+                ),
                 SizedBox(
                   height: 11.h,
                 ),
-                const SummeryRow(text: 'Discount', price: '-90 SAR'),
+                SummeryRow(
+                  text: 'Discount',
+                  price: '-${newRequest.orderCost.discount} SAR',
+                ),
                 SizedBox(
                   height: 11.h,
                 ),
-                const SummeryRow(text: 'Shipping', price: '+5 SAR'),
+                SummeryRow(
+                  text: 'Shipping',
+                  price: '+${newRequest.orderCost.subtotal} SAR',
+                ),
                 SizedBox(
                   height: 11.h,
                 ),
-                const SummeryRow(text: 'Taxes', price: '+1.5 SAR'),
+                SummeryRow(
+                  text: 'Taxes',
+                  price: '+${newRequest.orderCost.taxes} SAR',
+                ),
                 SizedBox(
                   height: 16.h,
                 ),
@@ -176,7 +192,10 @@ class NewRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 16.h,
                 ),
-                const SummeryRow(text: 'Total', price: '50'),
+                SummeryRow(
+                  text: 'Total',
+                  price: "${newRequest.orderCost.total}",
+                ),
                 SizedBox(
                   height: 18.h,
                 ),

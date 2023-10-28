@@ -4,7 +4,7 @@ import 'package:medlife_v2/features/orders/data/models/order_cost.dart';
 import 'package:medlife_v2/utils/data/models/address.dart';
 
 class Order {
-  String id;
+  final String id;
   final String status;
   final DateTime dateTime;
   final OrderCost orderCost;
@@ -14,7 +14,7 @@ class Order {
   final String paymentMethod;
 
   Order({
-    this.id = '',
+    required this.id,
     required this.status,
     required this.dateTime,
     required this.orderCost,

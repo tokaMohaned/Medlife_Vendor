@@ -51,14 +51,17 @@ Route? onGenerateRoute(RouteSettings routeSettings) {
       );
     case Routes.currentRequestDetails:
       return MaterialPageRoute(
+        settings: routeSettings,
         builder: (_) => const CurrentRequestDetails(),
       );
     case Routes.newRequestDetails:
       return MaterialPageRoute(
+        settings: routeSettings,
         builder: (_) => const NewRequestDetails(),
       );
     case Routes.completedRequestDetails:
       return MaterialPageRoute(
+        settings: routeSettings,
         builder: (_) => const CompletedRequestDetails(),
       );
     case Routes.profile:

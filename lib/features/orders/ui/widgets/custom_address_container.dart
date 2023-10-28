@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/orders/data/models/order.dart';
 import 'package:medlife_v2/features/orders/ui/widgets/custom_address_row.dart';
-import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 
 class CustomAddressContainer extends StatelessWidget {
-  const CustomAddressContainer({super.key});
+  final Order orderDetails;
+
+  const CustomAddressContainer({super.key, required this.orderDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -18,22 +20,21 @@ class CustomAddressContainer extends StatelessWidget {
         children: [
           CustomAddressRow(
             icon: Icons.person_2_outlined,
-            text:
-                "${ProfileCubit.get(context).vendor.firstName} ${ProfileCubit.get(context).vendor.lastName}",
+            text: orderDetails.id,
           ),
           SizedBox(
             height: 7.h,
           ),
           CustomAddressRow(
             icon: Icons.call_outlined,
-            text: "${ProfileCubit.get(context).vendor.crNumber}",
+            text: orderDetails.phone,
           ),
           SizedBox(
             height: 7.h,
           ),
           CustomAddressRow(
             icon: Icons.location_on_outlined,
-            text: ProfileCubit.get(context).vendor.address ?? '',
+            text: orderDetails.address.addressDetails ?? '',
           ),
         ],
       ),

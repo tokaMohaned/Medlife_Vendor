@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medlife_v2/features/auth/cubit/auth_cubit.dart';
 import 'package:medlife_v2/features/home/cubit/home_cubit.dart';
+import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/firebase_options.dart';
 import 'package:medlife_v2/route_manager.dart';
@@ -38,6 +39,9 @@ class MedLifeVendor extends StatelessWidget {
             ),
             BlocProvider(
               create: (_) => ProfileCubit(),
+            ),
+            BlocProvider(
+              create: (_) => OrdersCubit(),
             ),
           ],
           child: const MaterialApp(

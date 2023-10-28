@@ -81,7 +81,7 @@ class CurrentRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 8.h,
                 ),
-                const CustomAddressContainer(),
+                // const CustomAddressContainer(),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -158,7 +158,7 @@ class CurrentRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                const RequestOrder(),
+                // const RequestOrder(),
                 SizedBox(
                   height: 23.h,
                 ),
