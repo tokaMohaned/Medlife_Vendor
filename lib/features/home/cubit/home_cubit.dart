@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medlife_v2/features/home/cubit/home_state.dart';
-import 'package:medlife_v2/features/home/data/models/medical_equipment.dart';
 import 'package:medlife_v2/features/home/data/services/medical_equipments_firebase_service.dart';
+import 'package:medlife_v2/features/medical_equipment/data/models/medical_equipment.dart';
 import 'package:medlife_v2/utils/data/failure/failure.dart';
 
 class HomeCubit extends Cubit<HomeState> {

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:medlife_v2/features/home/data/models/medical_equipment.dart';
+import 'package:medlife_v2/features/medical_equipment/data/models/medical_equipment.dart';
 import 'package:medlife_v2/utils/constants.dart';
 
 class MedicalEquipmentsFirebaseService {

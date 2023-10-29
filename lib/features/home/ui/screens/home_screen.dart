@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medlife_v2/features/home/cubit/home_cubit.dart';
 import 'package:medlife_v2/features/home/cubit/home_state.dart';
-import 'package:medlife_v2/features/home/data/models/medical_equipment.dart';
 import 'package:medlife_v2/features/home/ui/widgets/home_container.dart';
+import 'package:medlife_v2/features/medical_equipment/data/models/medical_equipment.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/resources/text_styles.dart';
@@ -247,9 +247,10 @@ Supported formats: JPEG, PNG, GIF, MP4,
                     description: descriptionController.text,
                     price: double.parse(priceController.text),
                     quantity: double.parse(quantityController.text),
-                    sellerName:
+                    vendorName:
                         "${ProfileCubit.get(context).vendor.firstName!} ${ProfileCubit.get(context).vendor.lastName!}",
-                    brandName: brandNameController.text,
+                    vendorId: ProfileCubit.get(context).vendor.id ?? "",
+                    brand: brandNameController.text,
                     productType: productTypeController.text,
                     createdAt: DateTime.now(),
                     imagesUrls: [],

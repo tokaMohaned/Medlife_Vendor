@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MedicalEquipment {
-  final String id;
+  String id;
   final String title;
   final String description;
   final double price;
@@ -14,21 +14,23 @@ class MedicalEquipment {
   final double vendorRating;
   final int numOfReviews;
   final DateTime createdAt;
+  final double quantity;
 
   MedicalEquipment({
-    required this.id,
+    this.id = '',
     required this.title,
     required this.description,
     required this.price,
-    required this.rating,
+    this.rating = 5.0,
     required this.imagesUrls,
     required this.vendorId,
     required this.vendorName,
-    required this.vendorRating,
+    this.vendorRating = 4.8,
     required this.brand,
     required this.productType,
-    required this.numOfReviews,
+    this.numOfReviews = 47,
     required this.createdAt,
+    required this.quantity,
   });
 
   MedicalEquipment.fromJson(Map<String, dynamic> json)
@@ -38,6 +40,7 @@ class MedicalEquipment {
           description: json['description'] as String,
           price: json['price'] as double,
           rating: (json['rating'] as num).toDouble(),
+          quantity: json['quantity'] as double,
           imagesUrls: (json['imagesUrls'] as List)
               .map((imageUrl) => imageUrl as String)
               .toList(),
@@ -55,6 +58,7 @@ class MedicalEquipment {
         'title': title,
         'description': description,
         'price': price,
+        'quantity': quantity,
         'rating': rating,
         'imagesUrls': imagesUrls,
         'vendorId': vendorId,
