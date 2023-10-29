@@ -14,7 +14,6 @@ class MedicalEquipment {
   final double vendorRating;
   final int numOfReviews;
   final DateTime createdAt;
-  final double quantity;
 
   MedicalEquipment({
     this.id = '',
@@ -30,7 +29,6 @@ class MedicalEquipment {
     required this.productType,
     this.numOfReviews = 47,
     required this.createdAt,
-    required this.quantity,
   });
 
   MedicalEquipment.fromJson(Map<String, dynamic> json)
@@ -38,15 +36,14 @@ class MedicalEquipment {
           id: json['id'] as String,
           title: json['title'] as String,
           description: json['description'] as String,
-          price: json['price'] as double,
+          price: (json['price'] as num).toDouble(),
           rating: (json['rating'] as num).toDouble(),
-          quantity: json['quantity'] as double,
           imagesUrls: (json['imagesUrls'] as List)
               .map((imageUrl) => imageUrl as String)
               .toList(),
           vendorId: json['vendorId'] as String,
           vendorName: json['vendorName'] as String,
-          vendorRating: json['vendorRating'] as double,
+          vendorRating: (json['vendorRating'] as num).toDouble(),
           brand: json['brand'] as String,
           productType: json['productType'] as String,
           numOfReviews: json['numOfReviews'] as int,
@@ -58,7 +55,6 @@ class MedicalEquipment {
         'title': title,
         'description': description,
         'price': price,
-        'quantity': quantity,
         'rating': rating,
         'imagesUrls': imagesUrls,
         'vendorId': vendorId,

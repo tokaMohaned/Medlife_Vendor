@@ -246,7 +246,6 @@ Supported formats: JPEG, PNG, GIF, MP4,
                     title: productNameController.text,
                     description: descriptionController.text,
                     price: double.parse(priceController.text),
-                    quantity: double.parse(quantityController.text),
                     vendorName:
                         "${ProfileCubit.get(context).vendor.firstName!} ${ProfileCubit.get(context).vendor.lastName!}",
                     vendorId: ProfileCubit.get(context).vendor.id ?? "",

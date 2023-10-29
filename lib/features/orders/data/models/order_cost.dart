@@ -14,9 +14,9 @@ class OrderCost {
 
   OrderCost.fromJson(Map<String, dynamic> json)
       : this(
-          subtotal: json['subtotal'] as double,
-          deliveryFee: json['deliveryFee'] as double,
-          discount: json['discount'] as double,
-          taxes: json['taxes'] as double,
+          subtotal: (json['subtotal'] as num).toDouble(),
+          deliveryFee: (json['deliveryFee'] as num).toDouble(),
+          discount: (json['discount'] as num).toDouble(),
+          taxes: (json['taxes'] as num).toDouble(),
         );
 }
