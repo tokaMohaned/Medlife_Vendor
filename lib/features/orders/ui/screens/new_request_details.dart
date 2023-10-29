@@ -99,7 +99,7 @@ class NewRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          newRequest.address.place ?? "",
+                          newRequest.buyer.address?.place ?? "",
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],

@@ -1,16 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:medlife_v2/features/medical_equipment/data/models/medical_equipment.dart';
+import 'package:medlife_v2/features/medical_equipment/data/models/cart_medical_equipment.dart';
 import 'package:medlife_v2/features/orders/data/models/order_cost.dart';
-import 'package:medlife_v2/utils/data/models/address.dart';
+import 'package:medlife_v2/utils/data/models/user.dart';
 
 class Order {
   final String id;
   final String status;
   final DateTime dateTime;
   final OrderCost orderCost;
-  final List<MedicalEquipment> medicalEquipments;
-  final Address address;
-  final String phone;
+  final List<CartMedicalEquipment> cartMedicalEquipments;
+  final User buyer;
   final String paymentMethod;
 
   Order({
@@ -18,9 +17,8 @@ class Order {
     required this.status,
     required this.dateTime,
     required this.orderCost,
-    required this.medicalEquipments,
-    required this.address,
-    required this.phone,
+    required this.cartMedicalEquipments,
+    required this.buyer,
     required this.paymentMethod,
   });
 
@@ -31,14 +29,13 @@ class Order {
           dateTime: (json['dateTime'] as Timestamp).toDate(),
           orderCost:
               OrderCost.fromJson(json['orderCost'] as Map<String, dynamic>),
-          medicalEquipments: (json['medicalEquipments'] as List)
+          cartMedicalEquipments: (json['cartMedicalEquipments'] as List)
               .map(
                 (json) =>
-                    MedicalEquipment.fromJson(json as Map<String, dynamic>),
+                    CartMedicalEquipment.fromJson(json as Map<String, dynamic>),
               )
               .toList(),
-          address: Address.fromJson(json['address'] as Map<String, dynamic>),
-          phone: json['phone'] as String,
+          buyer: User.fromJson(json['buyer'] as Map<String, dynamic>),
           paymentMethod: json['paymentMethod'] as String,
         );
 }

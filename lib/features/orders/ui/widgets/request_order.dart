@@ -15,7 +15,7 @@ class RequestOrder extends StatelessWidget {
       constraints: BoxConstraints(
         maxHeight: MediaQuery.sizeOf(context).height *
             0.11 *
-            medicalEquipmentsDetails.medicalEquipments.length,
+            medicalEquipmentsDetails.cartMedicalEquipments.length,
         // minWidth: MediaQuery.sizeOf(context)
       ),
       decoration: BoxDecoration(
@@ -35,7 +35,7 @@ class RequestOrder extends StatelessWidget {
                     children: [
                       Image.network(
                         medicalEquipmentsDetails
-                            .medicalEquipments[index].imagesUrls.first,
+                            .cartMedicalEquipments[index].medicalEquipment.imagesUrls.first,
                       ),
                       SizedBox(
                         width: 9.w,
@@ -45,7 +45,7 @@ class RequestOrder extends StatelessWidget {
                         children: [
                           Text(
                             medicalEquipmentsDetails
-                                .medicalEquipments[index].title,
+                                .cartMedicalEquipments[index].medicalEquipment.title,
                             style: openSans14W400(
                               color: const Color(0xff576A69),
                             ),
@@ -58,7 +58,7 @@ class RequestOrder extends StatelessWidget {
                               children: [
                                 TextSpan(
                                   text:
-                                      "${medicalEquipmentsDetails.medicalEquipments[index].price}",
+                                      "${medicalEquipmentsDetails.cartMedicalEquipments[index].medicalEquipment.price}",
                                   style: openSans18W500(
                                     color: const Color(0xff576A69),
                                   ),
@@ -78,7 +78,7 @@ class RequestOrder extends StatelessWidget {
                         width: MediaQuery.sizeOf(context).width * 0.18,
                       ),
                       Text(
-                        "${medicalEquipmentsDetails.medicalEquipments[index].price}",
+                        "${medicalEquipmentsDetails.cartMedicalEquipments[index].medicalEquipment.price}",
                         style: openSans16W500(color: const Color(0xff1E1E1E)),
                       ),
                     ],
@@ -87,7 +87,7 @@ class RequestOrder extends StatelessWidget {
                 separatorBuilder: (context, index) {
                   return SizedBox(height: 16.h);
                 },
-                itemCount: medicalEquipmentsDetails.medicalEquipments.length,
+                itemCount: medicalEquipmentsDetails.cartMedicalEquipments.length,
               ),
             ),
           ],

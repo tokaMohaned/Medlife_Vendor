@@ -27,14 +27,14 @@ class CustomAddressContainer extends StatelessWidget {
           ),
           CustomAddressRow(
             icon: Icons.call_outlined,
-            text: orderDetails.phone,
+            text: orderDetails.buyer.phoneNumber ?? "",
           ),
           SizedBox(
             height: 7.h,
           ),
           CustomAddressRow(
             icon: Icons.location_on_outlined,
-            text: orderDetails.address.addressDetails ?? '',
+            text: orderDetails.buyer.address?.addressDetails ?? '',
           ),
         ],
       ),
