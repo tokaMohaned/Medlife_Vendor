@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
 import 'package:medlife_v2/features/orders/data/models/order.dart';
 import 'package:medlife_v2/features/orders/ui/widgets/custom_address_container.dart';
 import 'package:medlife_v2/features/orders/ui/widgets/order_request.dart';
@@ -69,7 +70,7 @@ class CurrentOrderDetails extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.r),
                     color: const Color(0xffF8965C),
                   ),
-                  child:  Padding(
+                  child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text("Status : ${acceptedOrder.status}"),
                   ),
@@ -163,7 +164,9 @@ class CurrentOrderDetails extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                RequestOrder(medicalEquipmentsDetails: acceptedOrder,),
+                RequestOrder(
+                  medicalEquipmentsDetails: acceptedOrder,
+                ),
                 SizedBox(
                   height: 23.h,
                 ),
@@ -205,6 +208,18 @@ class CurrentOrderDetails extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 18.h,
+                ),
+                DefaultTextButton(
+                  function: () {
+                    OrdersCubit.get(context).orderDelivered(acceptedOrder.id);
+                  },
+                  text: "Mark As Delivered",
+                  textStyle: openSans16W500(color: Colors.white),
+                  height: 65.h,
+                  width: double.infinity,
+                ),
+                SizedBox(
+                  height: 12.h,
                 ),
                 DefaultTextButton(
                   function: () {},

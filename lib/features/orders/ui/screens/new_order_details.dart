@@ -225,7 +225,7 @@ class NewOrderDetails extends StatelessWidget {
                     Expanded(
                       child: DefaultTextButton(
                         function: () {
-                          OrdersCubit.get(context).acceptOrder("15X6HwOLWuW0JubPdGqq");
+                          OrdersCubit.get(context).acceptOrder(newOrder.id);
                         },
                         text: "Accept",
                         textStyle: openSans16W500(color: Colors.white),

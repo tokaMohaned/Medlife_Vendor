@@ -32,6 +32,16 @@ class DeclineOrderError extends OrdersState {
   DeclineOrderError(this.message);
 }
 
+class OrderDeliveredLoading extends OrdersState {}
+
+class OrderDeliveredSuccess extends OrdersState {}
+
+class OrderDeliveredError extends OrdersState {
+  final String message;
+
+  OrderDeliveredError(this.message);
+}
+
 class GetPendingOrdersLoading extends OrdersState {}
 
 class GetPendingOrdersSuccess extends OrdersState {}

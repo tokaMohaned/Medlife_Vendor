@@ -41,7 +41,8 @@ class _HomeLayoutState extends State<HomeLayout> {
               OrdersCubit.get(context).getPendingOrders();
               OrdersCubit.get(context).getDeliveredOrders();
             } else if (state is AcceptOrderSuccess ||
-                state is DeclineOrderSuccess) {
+                state is DeclineOrderSuccess ||
+                state is OrderDeliveredSuccess) {
               OrdersCubit.get(context).getOrders();
             }
           },

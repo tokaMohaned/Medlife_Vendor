@@ -48,6 +48,16 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
   }
 
+  Future<void> orderDelivered (String orderId) async {
+    emit(OrderDeliveredLoading());
+    try {
+      await ordersFirebaseService.orderDelivered(orderId);
+      emit(OrderDeliveredSuccess());
+    } catch (e) {
+      emit(OrderDeliveredError(Failure.fromException(e).message));
+    }
+  }
+
   Future<void> getPendingOrders() async {
     emit(GetPendingOrdersLoading());
     try {

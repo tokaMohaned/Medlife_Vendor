@@ -30,4 +30,9 @@ class OrdersFirebaseService {
         FirebasePath.status: 'Declined',
       });
 
+  Future<void> orderDelivered(String orderId) async =>
+      _ordersCollection.doc(orderId).update({
+        FirebasePath.status: 'Delivered',
+      });
+
 }
