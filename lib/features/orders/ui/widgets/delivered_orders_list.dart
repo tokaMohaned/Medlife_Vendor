@@ -44,7 +44,7 @@ class DeliveredOrdersList extends StatelessWidget {
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            "Request Nom. : ${deliveredOrders[index].id}",
+                            "Order Nom. : ${deliveredOrders[index].id}",
                             style: openSans12W400(
                               color: Colors.black.withOpacity(0.5),
                             ),

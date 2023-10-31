@@ -44,7 +44,7 @@ class CurrentOrdersList extends StatelessWidget {
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            "Request Nom. : ${acceptedOrders[index].id}",
+                            "Order Nom. : ${acceptedOrders[index].id}",
                             style: openSans12W400(
                               color: Colors.black.withOpacity(0.5),
                             ),

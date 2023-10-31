@@ -45,7 +45,7 @@ class NewOrdersList extends StatelessWidget {
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            "Request Nom. : ${pendingOrders[index].id}",
+                            "Order Nom. : ${pendingOrders[index].id}",
                             style: openSans12W400(
                               color: Colors.black.withOpacity(0.5),
                             ),
