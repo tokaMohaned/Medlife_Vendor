@@ -3,7 +3,7 @@ class OrderCost {
   final double deliveryFee;
   final double discount;
   final double taxes;
-  late final double total = subtotal + deliveryFee - discount + taxes;
+  late final double total = subtotal + deliveryFee + taxes;
 
   OrderCost({
     required this.subtotal,

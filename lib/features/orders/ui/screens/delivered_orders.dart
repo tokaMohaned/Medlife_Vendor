@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medlife_v2/features/orders/ui/widgets/completed_requests_list.dart';
+import 'package:medlife_v2/features/orders/ui/widgets/delivered_orders_list.dart';
 
 class CompletedRequests extends StatelessWidget {
   const CompletedRequests({super.key});
@@ -9,7 +9,7 @@ class CompletedRequests extends StatelessWidget {
     return const Expanded(
       child: Column(
         children: [
-          CompletedRequestsList(),
+          DeliveredOrdersList(),
         ],
       ),
     );

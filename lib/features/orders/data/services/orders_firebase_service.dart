@@ -29,4 +29,5 @@ class OrdersFirebaseService {
       _ordersCollection.doc(orderId).update({
         FirebasePath.status: 'Declined',
       });
+
 }

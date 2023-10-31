@@ -3,9 +3,9 @@ import 'package:medlife_v2/features/auth/ui/screens/login_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/register_screen.dart';
 import 'package:medlife_v2/features/auth/ui/screens/reset_password_screen.dart';
 import 'package:medlife_v2/features/home/ui/screens/home_screen.dart';
-import 'package:medlife_v2/features/orders/ui/screens/completed_request_details.dart';
-import 'package:medlife_v2/features/orders/ui/screens/current_request_details.dart';
-import 'package:medlife_v2/features/orders/ui/screens/new_request_details.dart';
+import 'package:medlife_v2/features/orders/ui/screens/delivered_order_details.dart';
+import 'package:medlife_v2/features/orders/ui/screens/new_order_details.dart';
+import 'package:medlife_v2/features/orders/ui/screens/current_order_details.dart';
 import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
 import 'package:medlife_v2/ui/screens/home_layout.dart';
 import 'package:medlife_v2/ui/screens/splash_screen.dart';
@@ -52,17 +52,17 @@ Route? onGenerateRoute(RouteSettings routeSettings) {
     case Routes.currentRequestDetails:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const CurrentRequestDetails(),
+        builder: (_) => const CurrentOrderDetails(),
       );
     case Routes.newRequestDetails:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const NewRequestDetails(),
+        builder: (_) => const NewOrderDetails(),
       );
     case Routes.completedRequestDetails:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) => const CompletedRequestDetails(),
+        builder: (_) => const DeliveredOrderDetails(),
       );
     case Routes.profile:
       return MaterialPageRoute(

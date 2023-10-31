@@ -3,27 +3,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
 import 'package:medlife_v2/features/orders/cubit/orders_state.dart';
-import 'package:medlife_v2/features/orders/ui/screens/completed_requests.dart';
-import 'package:medlife_v2/features/orders/ui/screens/current_requests.dart';
-import 'package:medlife_v2/features/orders/ui/screens/new_requests.dart';
+import 'package:medlife_v2/features/orders/ui/screens/new_orders.dart';
+import 'package:medlife_v2/features/orders/ui/screens/delivered_orders.dart';
+import 'package:medlife_v2/features/orders/ui/screens/current_orders.dart';
 import 'package:medlife_v2/features/profile/cubit/profile_cubit.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/resources/text_styles.dart';
 
-class RequestsScreen extends StatefulWidget {
-  const RequestsScreen({super.key});
+class OrdersScreen extends StatefulWidget {
+  const OrdersScreen({super.key});
 
   @override
-  State<RequestsScreen> createState() => _RequestsScreenState();
+  State<OrdersScreen> createState() => _OrdersScreenState();
 }
 
-class _RequestsScreenState extends State<RequestsScreen> {
+class _OrdersScreenState extends State<OrdersScreen> {
   int currentIndex = 0;
-
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<OrdersCubit, OrdersState>(
+    return BlocConsumer<OrdersCubit, OrdersState>(
+      listener: (context, state) {
+        print("state is: $state");
+        if (state is GetOrdersSuccess) {
+          OrdersCubit.get(context).getAcceptedOrder();
+          OrdersCubit.get(context).getPendingOrders();
+          OrdersCubit.get(context).getDeliveredOrders();
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 47.h),
@@ -143,10 +150,10 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 height: 16.h,
               ),
               if (currentIndex == 0)
-                const NewRequests()
+                const NewOrders()
               else
                 currentIndex == 1
-                    ? const CurrentRequests()
+                    ? const CurrentOrders()
                     : const CompletedRequests(),
             ],
           ),

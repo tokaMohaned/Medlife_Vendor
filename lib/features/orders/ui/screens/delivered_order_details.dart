@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:medlife_v2/features/orders/data/models/order.dart';
 import 'package:medlife_v2/features/orders/ui/widgets/custom_address_container.dart';
-import 'package:medlife_v2/features/orders/ui/widgets/request_order.dart';
+import 'package:medlife_v2/features/orders/ui/widgets/order_request.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/resources/text_styles.dart';
 import 'package:medlife_v2/ui/widgets/custom_divider.dart';
 import 'package:medlife_v2/ui/widgets/default_text_button.dart';
 import 'package:medlife_v2/ui/widgets/summery_row.dart';
 
-class NewRequestDetails extends StatelessWidget {
-  const NewRequestDetails({super.key});
+class DeliveredOrderDetails extends StatelessWidget {
+  const DeliveredOrderDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final newRequest = ModalRoute.of(context)!.settings.arguments! as Order;
+    final deliveredOrder = ModalRoute.of(context)!.settings.arguments! as Order;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -61,7 +61,21 @@ class NewRequestDetails extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 29.h,
+                  height: 24.h,
+                ),
+                Container(
+                  width: MediaQuery.sizeOf(context).width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.r),
+                    color: const Color(0xff2CB742),
+                  ),
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Status : ${deliveredOrder.status}"),
+                  ),
+                ),
+                SizedBox(
+                  height: 12.h,
                 ),
                 Text(
                   "Shipping Address",
@@ -71,7 +85,7 @@ class NewRequestDetails extends StatelessWidget {
                   height: 8.h,
                 ),
                 CustomAddressContainer(
-                  orderDetails: newRequest,
+                  orderDetails: deliveredOrder,
                 ),
                 SizedBox(
                   height: 15.h,
@@ -90,7 +104,7 @@ class NewRequestDetails extends StatelessWidget {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 18.h, horizontal: 7.w),
+                    EdgeInsets.symmetric(vertical: 18.h, horizontal: 7.w),
                     child: Row(
                       children: [
                         const Icon(
@@ -99,7 +113,7 @@ class NewRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          newRequest.buyer.address?.place ?? "",
+                          deliveredOrder.buyer.address?.place ?? "",
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],
@@ -123,7 +137,7 @@ class NewRequestDetails extends StatelessWidget {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 18.h, horizontal: 7.w),
+                    EdgeInsets.symmetric(vertical: 18.h, horizontal: 7.w),
                     child: Row(
                       children: [
                         const Icon(
@@ -132,7 +146,7 @@ class NewRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          newRequest.paymentMethod,
+                          deliveredOrder.paymentMethod,
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],
@@ -149,7 +163,7 @@ class NewRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                RequestOrder(medicalEquipmentsDetails: newRequest,),
+                RequestOrder(medicalEquipmentsDetails: deliveredOrder,),
                 SizedBox(
                   height: 23.h,
                 ),
@@ -162,28 +176,21 @@ class NewRequestDetails extends StatelessWidget {
                 ),
                 SummeryRow(
                   text: 'Delivery Fee',
-                  price: '+${newRequest.orderCost.deliveryFee} SAR',
+                  price: '+${deliveredOrder.orderCost.deliveryFee} SAR',
                 ),
                 SizedBox(
                   height: 11.h,
                 ),
                 SummeryRow(
-                  text: 'Discount',
-                  price: '-${newRequest.orderCost.discount} SAR',
+                  text: 'SubTotal',
+                  price: '+${deliveredOrder.orderCost.subtotal} SAR',
                 ),
                 SizedBox(
                   height: 11.h,
                 ),
                 SummeryRow(
-                  text: 'Shipping',
-                  price: '+${newRequest.orderCost.subtotal} SAR',
-                ),
-                SizedBox(
-                  height: 11.h,
-                ),
-                SummeryRow(
-                  text: 'Taxes',
-                  price: '+${newRequest.orderCost.taxes} SAR',
+                  text: 'Bat',
+                  price: '+${deliveredOrder.orderCost.taxes} SAR',
                 ),
                 SizedBox(
                   height: 16.h,
@@ -194,24 +201,14 @@ class NewRequestDetails extends StatelessWidget {
                 ),
                 SummeryRow(
                   text: 'Total',
-                  price: "${newRequest.orderCost.total}",
+                  price: "${deliveredOrder.orderCost.total}",
                 ),
                 SizedBox(
                   height: 18.h,
                 ),
                 DefaultTextButton(
                   function: () {},
-                  text: "Place order",
-                  textStyle: openSans16W500(color: Colors.white),
-                  height: 65.h,
-                  width: double.infinity,
-                ),
-                SizedBox(
-                  height: 18.h,
-                ),
-                DefaultTextButton(
-                  function: () {},
-                  text: "Download Request",
+                  text: "Download Card",
                   textStyle: openSans16W500(color: const Color(0xff1A1A1A)),
                   height: 65.h,
                   width: double.infinity,

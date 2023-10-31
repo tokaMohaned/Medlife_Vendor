@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medlife_v2/features/home/ui/screens/home_screen.dart';
 import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
-import 'package:medlife_v2/features/orders/ui/screens/requests_screen.dart';
+import 'package:medlife_v2/features/orders/cubit/orders_state.dart';
+import 'package:medlife_v2/features/orders/ui/screens/orders_screen.dart';
 import 'package:medlife_v2/features/profile/ui/screens/profile_screen.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 
@@ -16,7 +18,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   final List<Widget> screens = [
     const HomeScreen(),
-    const RequestsScreen(),
+    const OrdersScreen(),
     const ProfileScreen(),
   ];
 
@@ -32,7 +34,21 @@ class _HomeLayoutState extends State<HomeLayout> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         extendBody: true,
-        body: screens[currentIndex],
+        body: BlocConsumer<OrdersCubit, OrdersState>(
+          listener: (context, state) {
+            if (state is GetOrdersSuccess) {
+              OrdersCubit.get(context).getAcceptedOrder();
+              OrdersCubit.get(context).getPendingOrders();
+              OrdersCubit.get(context).getDeliveredOrders();
+            } else if (state is AcceptOrderSuccess ||
+                state is DeclineOrderSuccess) {
+              OrdersCubit.get(context).getOrders();
+            }
+          },
+          builder: (context, state) {
+            return screens[currentIndex];
+          },
+        ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white,

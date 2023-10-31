@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
+import 'package:medlife_v2/features/orders/data/models/order.dart';
+import 'package:medlife_v2/features/orders/ui/widgets/custom_address_container.dart';
+import 'package:medlife_v2/features/orders/ui/widgets/order_request.dart';
 import 'package:medlife_v2/ui/resources/app_colors.dart';
 import 'package:medlife_v2/ui/resources/text_styles.dart';
 import 'package:medlife_v2/ui/widgets/custom_divider.dart';
+import 'package:medlife_v2/ui/widgets/default_text_button.dart';
 import 'package:medlife_v2/ui/widgets/summery_row.dart';
 
-class CompletedRequestDetails extends StatelessWidget {
-  const CompletedRequestDetails({super.key});
+class NewOrderDetails extends StatelessWidget {
+  const NewOrderDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final newOrder = ModalRoute.of(context)!.settings.arguments! as Order;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -62,11 +68,11 @@ class CompletedRequestDetails extends StatelessWidget {
                   width: MediaQuery.sizeOf(context).width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.r),
-                    color: const Color(0xff2CB742),
+                    color: const Color(0xffF8965C),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Status : Delivered"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Status : ${newOrder.status}"),
                   ),
                 ),
                 SizedBox(
@@ -79,7 +85,7 @@ class CompletedRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 8.h,
                 ),
-                // const CustomAddressContainer(),
+                CustomAddressContainer(orderDetails: newOrder),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -106,7 +112,7 @@ class CompletedRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          "Home delivery",
+                          newOrder.buyer.address?.place ?? "",
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],
@@ -139,7 +145,7 @@ class CompletedRequestDetails extends StatelessWidget {
                         ),
                         SizedBox(width: 6.w),
                         Text(
-                          "Cash payment",
+                          newOrder.paymentMethod,
                           style: openSans12W600(color: const Color(0xff1A1A1A)),
                         ),
                       ],
@@ -156,7 +162,9 @@ class CompletedRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                // const RequestOrder(),
+                RequestOrder(
+                  medicalEquipmentsDetails: newOrder,
+                ),
                 SizedBox(
                   height: 23.h,
                 ),
@@ -167,19 +175,24 @@ class CompletedRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 9.h,
                 ),
-                const SummeryRow(text: 'Delivery Fee', price: '+2 SAR'),
+                SummeryRow(
+                  text: 'Delivery Fee',
+                  price: '+${newOrder.orderCost.deliveryFee} SAR',
+                ),
                 SizedBox(
                   height: 11.h,
                 ),
-                const SummeryRow(text: 'Discount', price: '-90 SAR'),
+                SummeryRow(
+                  text: 'SubTotal',
+                  price: '+${newOrder.orderCost.subtotal} SAR',
+                ),
                 SizedBox(
                   height: 11.h,
                 ),
-                const SummeryRow(text: 'Shipping', price: '+5 SAR'),
-                SizedBox(
-                  height: 11.h,
+                SummeryRow(
+                  text: 'Bat',
+                  price: '+${newOrder.orderCost.taxes} SAR',
                 ),
-                const SummeryRow(text: 'Taxes', price: '+1.5 SAR'),
                 SizedBox(
                   height: 16.h,
                 ),
@@ -187,9 +200,42 @@ class CompletedRequestDetails extends StatelessWidget {
                 SizedBox(
                   height: 16.h,
                 ),
-                const SummeryRow(text: 'Total', price: '50'),
+                SummeryRow(
+                  text: 'Total',
+                  price: "${newOrder.orderCost.total}",
+                ),
                 SizedBox(
-                  height: 25.h,
+                  height: 18.h,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: DefaultTextButton(
+                        function: () {
+                          OrdersCubit.get(context).declineOrder(newOrder.id);
+                        },
+                        text: "Decline",
+                        backgroundColor: Colors.transparent,
+                        borderColor: AppColors.primary,
+                        textStyle: openSans16W500(color: Colors.black),
+                        height: 65.h,
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+                    Expanded(
+                      child: DefaultTextButton(
+                        function: () {
+                          OrdersCubit.get(context).acceptOrder("15X6HwOLWuW0JubPdGqq");
+                        },
+                        text: "Accept",
+                        textStyle: openSans16W500(color: Colors.white),
+                        height: 65.h,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 18.h,
                 ),
               ],
             ),

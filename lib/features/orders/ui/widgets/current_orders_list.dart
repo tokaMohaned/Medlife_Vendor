@@ -4,24 +4,27 @@ import 'package:medlife_v2/features/orders/cubit/orders_cubit.dart';
 import 'package:medlife_v2/route_manager.dart';
 import 'package:medlife_v2/ui/resources/text_styles.dart';
 
-class NewRequestsList extends StatelessWidget {
-  const NewRequestsList({super.key});
+class CurrentOrdersList extends StatelessWidget {
+  const CurrentOrdersList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ordersCubit = OrdersCubit.get(context);
+    final acceptedOrders = ordersCubit.acceptedOrders;
     return Expanded(
-      child: ListView.separated(
+      child: ListView.builder(
         padding: EdgeInsets.zero,
         physics: const BouncingScrollPhysics(),
+        itemCount: acceptedOrders.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () => Navigator.pushNamed(
               context,
-              Routes.newRequestDetails,
-              arguments: OrdersCubit.get(context).orders[index],
+              Routes.currentRequestDetails,
+              arguments: acceptedOrders[index],
             ),
             child: SizedBox(
-              height: 70.h,
+              height: 85.h,
               child: Column(
                 children: [
                   Row(
@@ -30,22 +33,25 @@ class NewRequestsList extends StatelessWidget {
                         Icons.account_circle,
                         size: 40,
                       ),
-                      SizedBox(
-                        width: 12.w,
-                      ),
+                      SizedBox(width: 12.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${OrdersCubit.get(context).orders[index].dateTime}".substring(0,10),
+                            "${acceptedOrders[index].buyer.firstName} ${acceptedOrders[index].buyer.lastName}",
                             style:
                                 openSans16W500(color: const Color(0xff27292D)),
                           ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
+                          SizedBox(height: 8.h),
                           Text(
-                            "Request Nom. : ${OrdersCubit.get(context).orders[index].id}",
+                            "Request Nom. : ${acceptedOrders[index].id}",
+                            style: openSans12W400(
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                          ),
+                          SizedBox(height: 5.h),
+                          Text(
+                            "Date Time: ${acceptedOrders[index].dateTime}".substring(0,22),
                             style: openSans12W400(
                               color: Colors.black.withOpacity(0.5),
                             ),
@@ -59,18 +65,12 @@ class NewRequestsList extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
+                  SizedBox(height: 8.h),
                 ],
               ),
             ),
           );
         },
-        separatorBuilder: (context, index) {
-          return const Divider(thickness: 1);
-        },
-        itemCount: OrdersCubit.get(context).orders.length,
       ),
     );
   }

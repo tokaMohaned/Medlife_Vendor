@@ -20,7 +20,7 @@ class CustomAddressContainer extends StatelessWidget {
         children: [
           CustomAddressRow(
             icon: Icons.person_2_outlined,
-            text: orderDetails.id,
+            text: "${orderDetails.buyer.firstName} ${orderDetails.buyer.lastName}",
           ),
           SizedBox(
             height: 7.h,
