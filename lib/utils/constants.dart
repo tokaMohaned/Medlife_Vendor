@@ -1,6 +1,7 @@
 class FirebasePath {
   //Collection
   static const String vendors = 'vendors';
+  static const String users = 'users';
   static const String medicalEquipments = 'medical-equipments';
   static const String medicalEquipmentsCart = 'medical-equipments-cart';
   static const String orders = 'orders';

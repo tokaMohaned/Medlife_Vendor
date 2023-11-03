@@ -21,37 +21,37 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(GetOrdersLoading());
     try {
 
-      orders = await ordersFirebaseService.getOrders();
+      orders = await ordersFirebaseService.getVendorOrders();
       emit(GetOrdersSuccess());
     } catch (e) {
       emit(GetOrdersError(Failure.fromException(e).message));
     }
   }
 
-  Future<void> acceptOrder(String orderId) async {
+  Future<void> acceptOrder(String orderId,String userId) async {
     emit(AcceptOrderLoading());
     try {
-      await ordersFirebaseService.acceptOrder(orderId);
+      await ordersFirebaseService.acceptOrder(orderId, userId);
       emit(AcceptOrderSuccess());
     } catch (e) {
       emit(AcceptOrderError(Failure.fromException(e).message));
     }
   }
 
-  Future<void> declineOrder(String orderId) async {
+  Future<void> declineOrder(String orderId,String userId) async {
     emit(DeclineOrderLoading());
     try {
-      await ordersFirebaseService.declineOrder(orderId);
+      await ordersFirebaseService.declineOrder(orderId, userId);
       emit(DeclineOrderSuccess());
     } catch (e) {
       emit(DeclineOrderError(Failure.fromException(e).message));
     }
   }
 
-  Future<void> orderDelivered (String orderId) async {
+  Future<void> orderDelivered (String orderId,String userId) async {
     emit(OrderDeliveredLoading());
     try {
-      await ordersFirebaseService.orderDelivered(orderId);
+      await ordersFirebaseService.orderDelivered(orderId, userId);
       emit(OrderDeliveredSuccess());
     } catch (e) {
       emit(OrderDeliveredError(Failure.fromException(e).message));

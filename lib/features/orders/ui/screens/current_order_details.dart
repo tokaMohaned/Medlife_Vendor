@@ -178,22 +178,22 @@ class CurrentOrderDetails extends StatelessWidget {
                   height: 9.h,
                 ),
                 SummeryRow(
-                  text: 'Delivery Fee',
-                  price: '+${acceptedOrder.orderCost.deliveryFee} SAR',
+                  text: 'Shipping',
+                  price: '+${acceptedOrder.orderCost.shipping} SAR',
                 ),
                 SizedBox(
                   height: 11.h,
+                ),
+                SizedBox(
+                  height: 11.h,
+                ),
+                SummeryRow(
+                  text: 'Vat',
+                  price: '+${acceptedOrder.orderCost.vat.toStringAsFixed(3)} SAR',
                 ),
                 SummeryRow(
                   text: 'SubTotal',
                   price: '+${acceptedOrder.orderCost.subtotal} SAR',
-                ),
-                SizedBox(
-                  height: 11.h,
-                ),
-                SummeryRow(
-                  text: 'Bat',
-                  price: '+${acceptedOrder.orderCost.taxes} SAR',
                 ),
                 SizedBox(
                   height: 16.h,
@@ -211,7 +211,7 @@ class CurrentOrderDetails extends StatelessWidget {
                 ),
                 DefaultTextButton(
                   function: () {
-                    OrdersCubit.get(context).orderDelivered(acceptedOrder.id);
+                    OrdersCubit.get(context).orderDelivered(acceptedOrder.id,acceptedOrder.buyer.id!).then((value) => Navigator.pop(context));
                   },
                   text: "Mark As Delivered",
                   textStyle: openSans16W500(color: Colors.white),

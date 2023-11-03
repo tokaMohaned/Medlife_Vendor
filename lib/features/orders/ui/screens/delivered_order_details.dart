@@ -176,7 +176,14 @@ class DeliveredOrderDetails extends StatelessWidget {
                 ),
                 SummeryRow(
                   text: 'Delivery Fee',
-                  price: '+${deliveredOrder.orderCost.deliveryFee} SAR',
+                  price: '+${deliveredOrder.orderCost.shipping} SAR',
+                ),
+                SizedBox(
+                  height: 11.h,
+                ),
+                SummeryRow(
+                  text: 'Vat',
+                  price: '+${deliveredOrder.orderCost.vat.toStringAsFixed(3)} SAR',
                 ),
                 SizedBox(
                   height: 11.h,
@@ -184,13 +191,6 @@ class DeliveredOrderDetails extends StatelessWidget {
                 SummeryRow(
                   text: 'SubTotal',
                   price: '+${deliveredOrder.orderCost.subtotal} SAR',
-                ),
-                SizedBox(
-                  height: 11.h,
-                ),
-                SummeryRow(
-                  text: 'Bat',
-                  price: '+${deliveredOrder.orderCost.taxes} SAR',
                 ),
                 SizedBox(
                   height: 16.h,

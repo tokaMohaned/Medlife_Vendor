@@ -44,14 +44,14 @@ class DeliveredOrdersList extends StatelessWidget {
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            "Order Nom. : ${deliveredOrders[index].id}",
+                            "ID : ${deliveredOrders[index].id}",
                             style: openSans12W400(
                               color: Colors.black.withOpacity(0.5),
                             ),
                           ),
                           SizedBox(height: 5.h),
                           Text(
-                            "Date Time: ${deliveredOrders[index].dateTime}".substring(0,22),
+                            "Date : ${deliveredOrders[index].dateTime}".substring(0,22),
                             style: openSans12W400(
                               color: Colors.black.withOpacity(0.5),
                             ),

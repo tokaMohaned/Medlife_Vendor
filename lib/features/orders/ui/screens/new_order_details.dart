@@ -176,8 +176,15 @@ class NewOrderDetails extends StatelessWidget {
                   height: 9.h,
                 ),
                 SummeryRow(
-                  text: 'Delivery Fee',
-                  price: '+${newOrder.orderCost.deliveryFee} SAR',
+                  text: 'Shipping',
+                  price: '+${newOrder.orderCost.shipping} SAR',
+                ),
+                SizedBox(
+                  height: 11.h,
+                ),
+                SummeryRow(
+                  text: 'Vat',
+                  price: '+${newOrder.orderCost.vat.toStringAsFixed(3)} SAR',
                 ),
                 SizedBox(
                   height: 11.h,
@@ -185,13 +192,6 @@ class NewOrderDetails extends StatelessWidget {
                 SummeryRow(
                   text: 'SubTotal',
                   price: '+${newOrder.orderCost.subtotal} SAR',
-                ),
-                SizedBox(
-                  height: 11.h,
-                ),
-                SummeryRow(
-                  text: 'Bat',
-                  price: '+${newOrder.orderCost.taxes} SAR',
                 ),
                 SizedBox(
                   height: 16.h,
@@ -212,7 +212,8 @@ class NewOrderDetails extends StatelessWidget {
                     Expanded(
                       child: DefaultTextButton(
                         function: () {
-                          OrdersCubit.get(context).declineOrder(newOrder.id);
+                          OrdersCubit.get(context)
+                              .declineOrder(newOrder.id, newOrder.buyer.id!).then((value) => Navigator.pop(context));
                         },
                         text: "Decline",
                         backgroundColor: Colors.transparent,
@@ -225,7 +226,8 @@ class NewOrderDetails extends StatelessWidget {
                     Expanded(
                       child: DefaultTextButton(
                         function: () {
-                          OrdersCubit.get(context).acceptOrder(newOrder.id);
+                          OrdersCubit.get(context)
+                              .acceptOrder(newOrder.id, newOrder.buyer.id!).then((value) => Navigator.pop(context));
                         },
                         text: "Accept",
                         textStyle: openSans16W500(color: Colors.white),
